@@ -5,7 +5,7 @@ module.exports = {
 	},
 	logger: function( req, res, next ) {
 		var timestamp = new Date().toString();
-		var log = 'Request: ' timestamp +' '+ req.method +' '+ req.url;
+		var log = 'Request: ' + timestamp +' '+ req.method +' '+ req.url;
 		console.log(log);
 		next();
 	}
