@@ -2,22 +2,12 @@ var express = require('express');
 var app = express();
 var PORT = 3000;
 
-var middleware = {
-	requireAuthentication: function( req, res, next ) {
-		console.log('private route!')
-		next();
-	},
-	logger: function( req, res, next ) {
-		var timestamp = new Date().toString();
-		var log = 'Request: ' timestamp +' '+ req.method +' '+ req.url;
-		console.log(log);
-		next();
-	}
-}
+var middleware = require('./middleware');
 
-// Application level Middleware needs to be above the route
+// Application level Middleware needs to be above the routes
 app.use(middleware.logger);
 
+// Route level middleware is provided in the route
 app.get('/about', middleware.requireAuthentication, function(req, res) {
 	res.send('About!');
 })
